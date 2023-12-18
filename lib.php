@@ -18,12 +18,30 @@ function fetch($url, $headers = [], $method = 'GET', $body = []){
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($body));
     }
+    $response_headers = [];
+    curl_setopt($ch, CURLOPT_HEADERFUNCTION,
+        function($curl, $header) use (&$response_headers) {
+            $len = strlen($header);
+            $header = explode(':', $header, 2);
+            if (count($header) < 2) // ignore invalid headers
+            return $len;
+            $response_headers[strtolower(trim($header[0]))][] = trim($header[1]);
+            return $len;
+        }
+    );
 
     $result = curl_exec($ch);
     if (curl_errno($ch)) {
         throw new Exception('Error:' . curl_error($ch));
     }
+    
     curl_close($ch);
+    http_response_code($response_code);
+    foreach($response_headers as $name => $values){
+        foreach($values as $value){
+            header("$name: $value", false);
+        }
+    }
 
     return $result;
 }
