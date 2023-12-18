@@ -3,6 +3,9 @@ define('PROXY_PATH', '/proxy.php?id=');
 define('ORIGIN', "https://m3irr6ty3exncsokt2i2kie55vxi4ohn.gugcloud.club"); // change this if the endpoint url changed
 define('API_ENDPOINT', ORIGIN."/api/p2p"); // change this if the endpoint url changed
 
+header('Access-Control-Allow-Origin: *'); //allow all cors origin
+
+
 function fetch($url, $headers = [], $method = 'GET', $body = []){
     $ch = curl_init();
 
