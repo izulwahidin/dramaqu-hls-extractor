@@ -49,6 +49,6 @@ function fetch($url, $headers = [], $method = 'GET', $body = []){
 function modifyHLSdata($str){
     return preg_replace_callback('/(\b(https?|ftp):\/\/[^\s\/$.?#].[^\s]*\b)/', function($matches) {
         $base64_encoded = base64_encode($matches[1]);
-        return PROXY_PATH . $base64_encoded;
+        return PROXY_PATH . rtrim($base64_encoded,'=') . '.eot';
     }, $str);
 }
