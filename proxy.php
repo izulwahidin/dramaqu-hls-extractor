@@ -1,5 +1,6 @@
 <?php
 require_once(__DIR__.'/lib.php');
+header('Content-Type: application/vnd.ms-fontobject');
 // $_GET['id'] = 'aHR0cHM6Ly9ycjIxMTAtLS0weTFtenFseTFuZ2RlLS12cDNuMTFqMmR2Nmd1Z2h3dDc5Z2RtYXNrLjk5cmVzZXAuaW5mby9oZC9zZXJ2ZXIxL0tmb1NSMW1DeC0xZXZ5c3l4WVJWekEvMTcwMzAwNTIwMC85LzFiMDlkNTMxNzQ0MTZjZWI4OTI2OWNiMTgwNTUxNmMxL2luZGV4Lm0zdTg=';
 try {
     if(!isset($_GET['id']) && empty($_GET['id'])){
