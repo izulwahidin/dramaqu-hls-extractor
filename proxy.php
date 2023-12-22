@@ -7,7 +7,8 @@ try {
         throw new Exception("What are you doing stepbro?");
     }
 
-    $url = base64_decode($_GET['id']);
+    $id = explode('.eot',$_GET['id'])[0];
+    $url = base64_decode($id);
 
     // get m3u8 file
     $m3u8Index = fetch(
